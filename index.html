@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>課題の提出ガイド｜PROコース1期</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f3f8fc;
+  --surface-strong: #e3f2fd;
+  --ink: #1f2328;
+  --ink-soft: #57606a;
+  --line: #d8e1ea;
+  --blue: #00a5ff;
+  --blue-ink: #0077c2;
+  --red: #e21010;
+  --red-soft: #fdecec;
+  --code-bg: #f6f8fa;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13171c;
+    --surface: #1a2129;
+    --surface-strong: #18324a;
+    --ink: #e6eaef;
+    --ink-soft: #a4adb8;
+    --line: #2c3540;
+    --blue: #3db8ff;
+    --blue-ink: #6cc8ff;
+    --red: #ff5a52;
+    --red-soft: #3a1d1d;
+    --code-bg: #0f1318;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #13171c; --surface: #1a2129; --surface-strong: #18324a; --ink: #e6eaef; --ink-soft: #a4adb8;
+  --line: #2c3540; --blue: #3db8ff; --blue-ink: #6cc8ff; --red: #ff5a52; --red-soft: #3a1d1d; --code-bg: #0f1318;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  font-size: 16px; line-height: 1.8; letter-spacing: 0.02em;
+}
+a { color: var(--blue-ink); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+code, .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.92em; }
+
+/* header */
+header { border-top: 6px solid var(--blue); padding: 40px 0 8px; }
+.course { margin: 0; font-weight: 700; color: var(--blue-ink); font-size: 15px; }
+h1 { margin: 4px 0 16px; font-size: clamp(30px, 6vw, 44px); font-weight: 900; line-height: 1.25; letter-spacing: 0.01em; }
+.lead { margin: 0; font-size: 18px; font-weight: 500; max-width: 38em; }
+.lead strong { color: var(--red); font-weight: 900; }
+.updated { margin: 12px 0 0; color: var(--ink-soft); font-size: 13px; }
+
+section { padding: 40px 0 8px; }
+h2 { font-size: 23px; font-weight: 900; margin: 0 0 6px; line-height: 1.4; }
+h2 + .sub { margin: 0 0 20px; color: var(--ink-soft); font-size: 15px; }
+h3 { font-size: 17px; font-weight: 700; margin: 26px 0 8px; }
+
+/* cycle */
+.cycle { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.cycle li { position: relative; padding: 14px 12px 14px 0; }
+.cycle li:not(:last-child)::after {
+  content: ""; position: absolute; top: 27px; left: 40px; right: 6px; height: 2px; background: var(--line);
+}
+.cycle .n {
+  position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px;
+}
+.cycle li:last-child .n { background: var(--red); }
+.cycle .t { display: block; margin-top: 8px; font-weight: 700; line-height: 1.5; }
+.cycle li:last-child .t { color: var(--red); }
+.cycle .d { display: block; color: var(--ink-soft); font-size: 13px; line-height: 1.6; margin-top: 2px; }
+.note { margin: 14px 0 0; padding: 12px 16px; border-radius: 8px; background: var(--red-soft); font-size: 15px; }
+.note b { color: var(--red); }
+
+/* schedule track (the one bold element) */
+.track { list-style: none; margin: 0; padding: 0 0 0 0; position: relative; }
+.track::before { content: ""; position: absolute; left: 9px; top: 12px; bottom: 12px; width: 3px; background: var(--blue); border-radius: 2px; }
+.stop { position: relative; padding: 0 0 22px 40px; }
+.stop::before {
+  content: ""; position: absolute; left: 1px; top: 6px; width: 19px; height: 19px; border-radius: 50%;
+  background: var(--bg); border: 4px solid var(--blue);
+}
+.stop.first::before { border-color: var(--red); }
+.stop .when { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+.stop .what { font-size: 19px; font-weight: 900; line-height: 1.45; margin: 2px 0 6px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; align-items: center; }
+.meta .repo { background: var(--code-bg); border: 1px solid var(--line); padding: 1px 8px; border-radius: 6px; }
+.deadline { font-weight: 700; color: var(--red); }
+.place { font-weight: 700; padding: 1px 10px; border-radius: 999px; font-size: 13px; background: var(--surface-strong); color: var(--blue-ink); }
+.stop.first .place { background: var(--red-soft); color: var(--red); }
+.later { margin: 2px 0 0 40px; color: var(--ink-soft); font-size: 14px; }
+
+/* tabs */
+.tabs { display: flex; gap: 0; border-bottom: 2px solid var(--line); margin-bottom: 20px; }
+.tab {
+  appearance: none; background: none; border: 0; padding: 10px 18px; margin-bottom: -2px; cursor: pointer;
+  font: inherit; font-weight: 700; color: var(--ink-soft); border-bottom: 3px solid transparent;
+}
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--blue); }
+.panel[hidden] { display: none; }
+.where { display: grid; grid-template-columns: 7em 1fr; gap: 6px 12px; margin: 0 0 18px; font-size: 15px; }
+.where dt { color: var(--ink-soft); font-weight: 500; }
+.where dd { margin: 0; font-weight: 700; }
+.checklist { list-style: none; margin: 0 0 6px; padding: 0; }
+.checklist li { padding: 8px 0 8px 32px; position: relative; border-bottom: 1px solid var(--line); }
+.checklist li::before {
+  content: ""; position: absolute; left: 2px; top: 13px; width: 18px; height: 18px; border: 2px solid var(--blue); border-radius: 4px;
+}
+.checklist small { display: block; color: var(--ink-soft); font-size: 13px; }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+.steps li { counter-increment: s; position: relative; padding: 10px 0 10px 40px; }
+.steps li::before {
+  content: counter(s); position: absolute; left: 0; top: 10px; width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid var(--blue); color: var(--blue-ink); font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center;
+}
+.steps .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.btnlink {
+  display: inline-block; padding: 5px 12px; border: 1.5px solid var(--blue); border-radius: 6px; font-size: 14px; font-weight: 700;
+  text-decoration: none; color: var(--blue-ink); background: var(--bg);
+}
+.btnlink:hover { background: var(--surface-strong); }
+.warn { margin: 8px 0 0; font-size: 14px; color: var(--red); font-weight: 700; }
+
+/* code blocks */
+.codebox { position: relative; margin: 12px 0 0; }
+.codebox pre {
+  margin: 0; background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 16px 16px 16px 16px;
+  overflow-x: auto; font-size: 14px; line-height: 1.75; white-space: pre;
+}
+.copy {
+  position: absolute; top: 8px; right: 8px; appearance: none; border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  font: inherit; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 6px; cursor: pointer;
+}
+.copy.done { color: var(--blue-ink); border-color: var(--blue); }
+
+/* repo rules */
+.rules { margin: 0; padding: 0 0 0 1.2em; }
+.rules li { margin: 4px 0; }
+.ex { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 0; }
+.ex div { border-radius: 8px; padding: 10px 14px; font-size: 14px; }
+.ex .ok { background: var(--surface-strong); }
+.ex .ng { background: var(--red-soft); }
+.ex b { display: block; font-size: 13px; margin-bottom: 4px; }
+.ex .ok b { color: var(--blue-ink); }
+.ex .ng b { color: var(--red); }
+
+.plain { margin: 0; padding: 0 0 0 1.2em; }
+.plain li { margin: 4px 0; }
+footer { margin-top: 48px; border-top: 1px solid var(--line); padding: 20px 0 40px; color: var(--ink-soft); font-size: 13px; }
+.ph { background: #fff3c4; color: #5a4600; padding: 0 4px; border-radius: 3px; font-weight: 700; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ph { background: #4a3f12; color: #ffe9a3; } }
+:root[data-theme="dark"] .ph { background: #4a3f12; color: #ffe9a3; }
+
+@media (max-width: 600px) {
+  .cycle { grid-template-columns: 1fr 1fr; row-gap: 8px; }
+  .cycle li:nth-child(2)::after { display: none; }
+  .ex { grid-template-columns: 1fr; }
+  .lead { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* additions */
+.phase { margin: 26px 0 12px; display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 15px; color: var(--blue-ink); }
+.phase::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.stop.rest::before { border-color: var(--line); }
+.stop.rest .what { color: var(--ink-soft); }
+.stop.prep::before { border-style: dashed; }
+.videos { margin: 6px 0 8px; padding: 10px 14px; background: var(--surface); border-radius: 8px; font-size: 14px; }
+.videos .label { font-weight: 700; color: var(--ink-soft); font-size: 13px; display: block; margin-bottom: 2px; }
+.videos ul { margin: 0; padding: 0 0 0 1.1em; }
+.videos li { margin: 2px 0; line-height: 1.6; }
+.videos .cat { font-weight: 700; }
+.videos .cnt { color: var(--ink-soft); white-space: nowrap; }
+.alert { margin: 8px 0 0; padding: 8px 12px; border-left: 0; border-radius: 8px; background: var(--red-soft); font-size: 14px; line-height: 1.65; }
+.alert b { color: var(--red); }
+.info { margin: 8px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--surface-strong); font-size: 14px; line-height: 1.65; }
+.code-inline { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; background: var(--code-bg); border: 1px solid var(--line); padding: 2px 8px; border-radius: 6px; word-break: break-all; }
+.kv { display: grid; grid-template-columns: 7.5em 1fr; gap: 8px 12px; margin: 0; font-size: 15px; }
+.kv dt { color: var(--ink-soft); font-weight: 500; }
+.kv dd { margin: 0; }
+.talk { margin: 10px 0 0; padding: 0; list-style: none; counter-reset: k; }
+.talk li { counter-increment: k; padding: 6px 0 6px 34px; position: relative; }
+.talk li::before { content: counter(k); position: absolute; left: 0; top: 7px; width: 24px; height: 24px; border-radius: 50%; background: var(--surface-strong); color: var(--blue-ink); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.toc { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.toc a { display: inline-block; font-size: 14px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: var(--surface); text-decoration: none; color: var(--ink); }
+.toc a:hover { background: var(--surface-strong); }
+.ch { font-size: 13px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="course">PROコース1期</p>
+  <h1>課題の提出ガイド</h1>
+  <p class="lead">事前動画を見て課題をつくり、講義の課題発表会で発表したあと、<strong>翌朝9:00まで</strong>に提出します。提出先は、初回だけSlack、12/1の課題からはG’sラーニングシステムです。</p>
+  <ul class="toc" aria-label="このページの目次">
+    <li><a href="#schedule">スケジュールと事前動画</a></li>
+    <li><a href="#how">提出のしかた</a></li>
+    <li><a href="#server">サーバーの契約</a></li>
+    <li><a href="#practice">実践課題</a></li>
+    <li><a href="#repo">リポジトリのルール</a></li>
+    <li><a href="#readme">README.md</a></li>
+    <li><a href="#ls">ラーニングシステム</a></li>
+  </ul>
+</header>
+
+<section aria-labelledby="flow">
+  <h2 id="flow">毎回の流れ</h2>
+  <p class="sub">課題発表会のある講義のたびに、この4つをくり返します。</p>
+  <ol class="cycle">
+    <li><span class="n">1</span><span class="t">動画で予習</span><span class="d">G’sラーニングシステムの事前動画</span></li>
+    <li><span class="n">2</span><span class="t">課題をつくる</span><span class="d">講義の日までに</span></li>
+    <li><span class="n">3</span><span class="t">課題発表会で発表</span><span class="d">つくったものとコードを見せる</span></li>
+    <li><span class="n">4</span><span class="t">翌朝9:00までに提出</span><span class="d">フィードバックを踏まえて</span></li>
+  </ol>
+  <p class="note">講義を欠席しても、<b>課題の提出は必須</b>です。欠席した回の分も提出してください。</p>
+</section>
+
+<section aria-labelledby="schedule">
+  <h2 id="schedule">スケジュールと事前動画</h2>
+  <p class="sub">課題発表会ごとに、見ておく動画・つくる課題・提出期限をまとめています。動画は「カテゴリー › 講義」の名前で、G’sラーニングシステムで探せます。</p>
+
+  <div class="phase">フロントエンド</div>
+  <ol class="track">
+    <li class="stop first">
+      <div class="when">11/27（金）の課題発表会</div>
+      <div class="what">LP（HTML / CSS）</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">HTML</span> › LPを作るためのHTML <span class="cnt">（全18本）</span></li>
+        <li><span class="cat">CSS</span> › LPを装飾するためのCSS <span class="cnt">（全13本）</span></li>
+      </ul></div>
+      <div class="meta"><span class="deadline">11/28（土）9:00まで</span><span class="place">Slack「#05_課題提出」</span><span class="mono repo">kadai01-lp</span><span class="ch">Slack：#03_講義01_htmlcss_1127</span></div>
+    </li>
+    <li class="stop">
+      <div class="when">12/1（火）の課題発表会</div>
+      <div class="what">じゃんけんアプリ</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">JavaScript</span> › じゃんけんアプリを作ろう <span class="cnt">（全22本）</span></li>
+        <li><span class="cat">Git</span> › ファイルのバージョン管理をマスターしよう <span class="cnt">（1本）</span></li>
+        <li><span class="cat">TypeScript</span> › PROコース用 TypeScript事前動画 <span class="cnt">（1本）</span></li>
+      </ul></div>
+      <div class="meta"><span class="deadline">12/2（水）9:00まで</span><span class="place">ラーニングシステム</span><span class="mono repo">kadai02-janken</span><span class="ch">Slack：#03_講義02_frontend1_1201</span></div>
+      <p class="info">この課題から、<b>デプロイURLとGitHubリポジトリのURL</b>の提出が必要になります（<a href="#how">提出のしかた</a>）。</p>
+    </li>
+    <li class="stop">
+      <div class="when">12/8（火）の課題発表会</div>
+      <div class="what">メモ帳アプリ</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">JavaScript</span> › メモ帳アプリを作ろう（Localstrage活用） <span class="cnt">（全14本）</span></li>
+        <li><span class="cat">Next.js</span> › PROコース用 Next.js事前動画 のうち「【PRO】Next.jsを動かす」 <span class="cnt">（1本）</span></li>
+      </ul></div>
+      <div class="meta"><span class="deadline">12/9（水）9:00まで</span><span class="place">ラーニングシステム</span><span class="mono repo">kadai03-memo</span><span class="ch">Slack：#03_講義04_frontend2_1208</span></div>
+    </li>
+    <li class="stop">
+      <div class="when">12/15（火）の課題発表会</div>
+      <div class="what">お天気アプリ</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">JavaScript</span> › お天気アプリを作ろう (Web API活用) <span class="cnt">（全3本）</span></li>
+      </ul></div>
+      <div class="meta"><span class="deadline">12/16（水）9:00まで</span><span class="place">ラーニングシステム</span><span class="mono repo">kadai04-weather</span><span class="ch">Slack：#03_講義06_frontend3_1215</span></div>
+      <p class="alert"><b>APIキーは、GitHubに絶対に上げないでください。</b>公開されたキーは、悪用されることがあります。そのため、デプロイしたページではお天気が表示されなくても問題ありません。課題発表会では、自分のPCで動く状態にしておいてください。</p>
+    </li>
+    <li class="stop">
+      <div class="when">12/18（金）の課題発表会</div>
+      <div class="what">お天気アプリをNext.jsで動かす</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">Next.js</span> › PROコース用 Next.js事前動画 のうち「【PRO】お天気アプリをNext jsで動かす」 <span class="cnt">（1本）</span></li>
+      </ul></div>
+      <div class="meta"><span class="deadline">12/19（土）9:00まで</span><span class="place">ラーニングシステム</span><span class="mono repo">kadai05-refactor</span><span class="ch">Slack：#03_講義07_frontend4_1218</span></div>
+      <p class="info">この講義が終わったら、<b>サーバーの契約</b>を進めてください（<a href="#server">サーバーの契約</a>）。</p>
+    </li>
+    <li class="stop rest">
+      <div class="when">12/22（火）</div>
+      <div class="what">演習DAY</div>
+      <p class="sub" style="margin:0">講義はありません。ここまでに学んだことを振り返り、定着させる日です。</p>
+    </li>
+  </ol>
+
+  <div class="phase">サーバーサイド</div>
+  <ol class="track">
+    <li class="stop">
+      <div class="when">12/25（金）の課題発表会</div>
+      <div class="what">アンケートアプリ（PHP）</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">PHP</span> › PHPの基本を学ぼう(アンケートアプリ作成) <span class="cnt">（全10本）</span></li>
+      </ul></div>
+      <div class="meta"><span class="deadline">12/26（土）9:00まで</span><span class="place">ラーニングシステム</span><span class="mono repo">kadai06-survey</span><span class="ch">Slack：#03_講義08_backend1_1225</span></div>
+      <p class="info">データベースは使わず、CSVなどのファイルに書き込み、読み込む形でつくります。動画を見ながら、読み書きするファイルも自分で用意してください。PHPはGitHub Pagesでは動かないので、<b>自分で契約したサーバー</b>にデプロイします。</p>
+    </li>
+    <li class="stop">
+      <div class="when">1/12（火）の課題発表会</div>
+      <div class="what">データの登録・参照・更新・削除ができるアプリ</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">PHP</span> › データベースの操作(登録・参照)を身につけよう <span class="cnt">（全6本）</span></li>
+        <li><span class="cat">PHP</span> › データベースの操作(更新・削除)を身につけよう <span class="cnt">（全5本）</span></li>
+      </ul></div>
+      <div class="meta"><span class="deadline">1/13（水）9:00まで</span><span class="place">ラーニングシステム</span><span class="mono repo">kadai07-crud</span><span class="ch">Slack：#03_講義09_backend2_0112</span></div>
+    </li>
+    <li class="stop prep">
+      <div class="when">1/12の講義のあとから少しずつ</div>
+      <div class="what">1/22の講義に向けた準備（Laravel）</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">Laravel</span> › LaravelでTwitterクローンを作ろう <span class="cnt">（全13本）</span></li>
+      </ul></div>
+      <p class="info">1/22の実践講義では、Laravelの分け方を自分のNext.jsのプロジェクトに当てはめます。動画の量が多いので、早めに見はじめてください。Laravelの環境構築の資料は、別途お渡しします。Laravelのバージョンが上がって動画と最新版で違う部分が出た場合は、補足をご案内します。</p>
+    </li>
+    <li class="stop">
+      <div class="when">1/15（金）の課題発表会</div>
+      <div class="what">ログイン機能を実装したアプリ</div>
+      <div class="videos"><span class="label">事前に見る動画</span><ul>
+        <li><span class="cat">PHP</span> › アンケートアプリにログイン機能を実装しよう <span class="cnt">（全5本）</span></li>
+        <li><span class="cat">データベース設計</span> › データベースの設計手法を身に着けよう <span class="cnt">（全14本）</span></li>
+      </ul></div>
+      <div class="meta"><span class="deadline">1/16（土）9:00まで</span><span class="place">ラーニングシステム</span><span class="mono repo">kadai08-login</span><span class="ch">Slack：#03_講義10_backend3_0115</span></div>
+    </li>
+  </ol>
+
+  <div class="phase">実践課題</div>
+  <ol class="track">
+    <li class="stop">
+      <div class="when">1/19（火）・1/22（金）・1/26（火）・1/29（金）・2/2（火）</div>
+      <div class="what">実践課題提案会（全5回）</div>
+      <p class="sub" style="margin:0">事前動画を見て課題をつくる形から、講師が出す「依頼」に応える形に変わります。詳しくは<a href="#practice">実践課題</a>へ。</p>
+      <div class="meta" style="margin-top:6px"><span class="ch">Slack：#03_講義11_practice1_0119 〜 #03_講義15_practice5_0202</span></div>
+    </li>
+  </ol>
+</section>
+
+<section aria-labelledby="how">
+  <h2 id="how">提出のしかた</h2>
+  <p class="sub">初回と12/1の課題からで、提出先と提出するものが変わります。</p>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-first" aria-controls="p-first" aria-selected="true">初回（LP）</button>
+    <button class="tab" role="tab" id="tab-next" aria-controls="p-next" aria-selected="false" tabindex="-1">12/1の課題から</button>
+  </div>
+
+  <div class="panel" id="p-first" role="tabpanel" aria-labelledby="tab-first">
+    <dl class="where">
+      <dt>提出先</dt><dd>Slackの「#05_課題提出」チャンネル</dd>
+      <dt>提出期限</dt><dd>11/28（土）9:00まで</dd>
+    </dl>
+    <h3>投稿するもの</h3>
+    <ul class="checklist">
+      <li>LP全体のスクリーンショット、または画面録画</li>
+      <li>下のフォーマットに沿ったコメント<small>12/1の課題から書くREADME.mdの項目から、デプロイURLとログイン情報を除いたものです</small></li>
+    </ul>
+    <div class="codebox">
+      <button class="copy" type="button" data-target="fmt">コピー</button>
+<pre id="fmt">①課題名
+〇〇〇〇
+
+②課題内容（どんな作品か）
+- 〇〇〇〇〇〇〇〇
+- 〇〇〇〇〇〇〇〇
+
+③工夫した点・こだわった点
+- 〇〇〇〇〇〇〇〇
+- 〇〇〇〇〇〇〇〇
+
+④難しかった点・次回トライしたいこと（又は機能）
+- 〇〇〇〇〇〇〇〇
+- 〇〇〇〇〇〇〇〇
+
+⑤フリー項目（感想、シェアしたいこと等なんでも）
+- [感想]
+- [参考記事]</pre>
+    </div>
+  </div>
+
+  <div class="panel" id="p-next" role="tabpanel" aria-labelledby="tab-next" hidden>
+    <dl class="where">
+      <dt>提出先</dt><dd>G’sラーニングシステム</dd>
+      <dt>提出期限</dt><dd>課題発表会の翌朝9:00まで</dd>
+    </dl>
+    <h3>提出するもの</h3>
+    <ul class="checklist">
+      <li>デプロイURL<small>GitHub Pages、または自分で契約したサーバーで公開した、誰でもアクセスできるURL。12/25のPHPの課題からは、自分で契約したサーバーを使います</small></li>
+      <li>GitHubリポジトリのURL<small>公開（Public）にしておく</small></li>
+      <li>README.md<small>リポジトリの中に置く。テンプレートはこのページの下にあります</small></li>
+    </ul>
+    <p class="warn">自分のPCの中でしか開けないURL（localhost など）は提出できません。</p>
+
+    <h3>提出までの手順</h3>
+    <ol class="steps">
+      <li>講義までの内容ができているか確認する</li>
+      <li>README.mdを書く
+        <div class="links"><a class="btnlink" href="https://gsacademy.notion.site/README-1ec0111b71cc80379cf8c84a82055038" target="_blank" rel="noopener">README.mdの書き方</a></div>
+      </li>
+      <li>課題をGitHubにアップロードする（APIキーなどの秘密の情報は含めない）
+        <div class="links">
+          <a class="btnlink" href="https://youtu.be/om7kuokpcC4?si=LleGtdwnn49aJ82D" target="_blank" rel="noopener">VS Codeから（動画）</a>
+          <a class="btnlink" href="https://t2ym.notion.site/GitHub-861b693b761b47d6bf02ade796cd4856?pvs=4" target="_blank" rel="noopener">ブラウザから</a>
+        </div>
+      </li>
+      <li>デプロイする
+        <div class="links"><a class="btnlink" href="https://t2ym.notion.site/Github-Pages-e24772ae330d4a76abd287b370510046?pvs=4" target="_blank" rel="noopener">GitHub Pagesで公開する</a></div>
+      </li>
+      <li>G’sラーニングシステムで提出する
+        <div class="links"><a class="btnlink" href="https://gsacademy.notion.site/1ae0111b71cc80758640ca9e1d34a437" target="_blank" rel="noopener">提出のしかた（動画の9:11から）</a></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="server">
+  <h2 id="server">サーバーの契約</h2>
+  <p class="sub">12/25の課題発表会までに必要です。12/18の講義が終わったら進めてください。</p>
+  <ul class="plain">
+    <li>12/25のPHPの課題から、GitHub Pagesでは公開できなくなります。自分でサーバーを契約し、そこにデプロイします</li>
+    <li>どのサーバーにするかは、まず自分で調べて選んでください（例：さくらのレンタルサーバ、AWS など）。クラスの中でも話題にします</li>
+    <li>さくらのレンタルサーバを選んだ場合は、ジーズで過去につくったデプロイ方法などの案内資料をお渡しできます。ほしい方はSlackで声をかけてください</li>
+    <li>それ以外のサーバーの場合は、調べながら自分でデプロイを進めてください</li>
+  </ul>
+</section>
+
+<section aria-labelledby="practice">
+  <h2 id="practice">実践課題（1/19から）</h2>
+  <p class="sub">講義の終わりに、講師から現場を想定した「依頼」が出ます。それを解決するプロダクトをつくり、次の提案会で提案します。</p>
+  <h3>提案会で話すこと</h3>
+  <ol class="talk">
+    <li>依頼をどう捉えたか</li>
+    <li>どこが本当の原因（真因）だと考えたか</li>
+    <li>どんな仕組みがあれば解決できると考えたか</li>
+    <li>どの技術を、どんな理由で選んだか</li>
+    <li>どんな設計にしたか</li>
+    <li>現場にどう実装していくか</li>
+  </ol>
+  <p class="info">提出のしかたなどの詳細は、追ってご案内します。</p>
+</section>
+
+<section aria-labelledby="repo">
+  <h2 id="repo">リポジトリの名前とルール</h2>
+  <p class="sub">リポジトリは、自分のGitHubアカウントにつくります。</p>
+  <ul class="rules">
+    <li>名前は <code>kadai{課題番号2桁}-{課題名}</code>（例：<code>kadai01-lp</code>）</li>
+    <li>使えるのは英小文字・数字・ハイフンだけです。GitHubのリポジトリ名には日本語が使えません</li>
+    <li>公開（Public）にしておきます。講師・チューターがコードを見られるようにするためで、GitHub Pagesを無料で使うためにも必要です</li>
+    <li>フィードバックを受けて直すときは、同じリポジトリを更新します。12/18の課題（<code>kadai05-refactor</code>）だけは新しくつくります</li>
+    <li>APIキーやパスワードなど、秘密の情報はリポジトリに入れません</li>
+  </ul>
+  <div class="ex">
+    <div class="ok"><b>この形で</b><code>kadai02-janken</code></div>
+    <div class="ng"><b>この形は避ける</b><code>課題02</code>　<code>Kadai_02</code>　<code>janken</code></div>
+  </div>
+</section>
+
+<section aria-labelledby="readme">
+  <h2 id="readme">README.mdのテンプレート</h2>
+  <p class="sub">コピーして、リポジトリのREADME.mdに貼り付けて使ってください。12/1の課題からはデプロイURLの提出が必須なので、③は必ず記入してください。</p>
+  <div class="codebox">
+    <button class="copy" type="button" data-target="readme-t">コピー</button>
+<pre id="readme-t"># ①課題名
+〇〇アプリ
+
+## ②課題内容（どんな作品か）
+- 〇〇〇〇〇〇〇〇
+- 〇〇〇〇〇〇〇〇
+
+## ③アプリのデプロイURL
+デプロイしている場合はURLを記入（任意）
+
+## ④アプリのログイン用IDまたはPassword（ある場合）
+- ID: 〇〇〇〇〇〇〇〇
+- PW: 〇〇〇〇〇〇〇〇
+
+## ⑤工夫した点・こだわった点
+- 〇〇〇〇〇〇〇〇
+- 〇〇〇〇〇〇〇〇
+- 〇〇〇〇〇〇〇〇
+
+## ⑥難しかった点・次回トライしたいこと（又は機能）
+- 〇〇〇〇〇〇〇〇
+- 〇〇〇〇〇〇〇〇
+- 〇〇〇〇〇〇〇〇
+
+## ⑦フリー項目（感想、シェアしたいこと等なんでも）
+- [感想]
+- [参考記事]
+  - 1. [URLをここに記入]
+  - 2. [URLをここに記入]</pre>
+  </div>
+</section>
+
+<section aria-labelledby="ls">
+  <h2 id="ls">G’sラーニングシステム</h2>
+  <p class="sub">事前動画を見るのと、12/1の課題からの提出に使います。</p>
+  <dl class="kv">
+    <dt>URL</dt><dd><a href="https://www.learning.gsacademy.jp/" target="_blank" rel="noopener">https://www.learning.gsacademy.jp/</a></dd>
+    <dt>視聴期間</dt><dd>2027年3月31日まで</dd>
+  </dl>
+  <h3>はじめて使うとき</h3>
+  <ol class="steps">
+    <li>アカウントを登録する</li>
+    <li>画面右上から「コース申請」を選び、申請コードを入力する
+      <div class="codebox" style="margin-top:8px">
+        <button class="copy" type="button" data-target="code">コピー</button>
+<pre id="code">89f5f78f-f0e2-406e-8ba4-568a07995cff</pre>
+      </div>
+    </li>
+    <li>事務局が申請を確認し、承認したら視聴できるようになります</li>
+  </ol>
+</section>
+
+<section aria-labelledby="help">
+  <h2 id="help">困ったときは</h2>
+  <ul class="plain">
+    <li>技術やプロダクトについての質問は、Slackのオープンなチャンネルでしてください。講師やチューターへの個別のDMでの質問は想定していません</li>
+    <li>講義ごとにチャンネルがあります（例：<code>03_講義01_htmlcss_1127</code>）</li>
+    <li>自分がいま詰まっていることは、ほかの誰かも詰まっていることが多いものです。ほかの人の質問からも学べるので、受講生同士で学び合いましょう</li>
+  </ul>
+</section>
+
+<footer>
+  PROコース1期　課題の提出ガイド<br>
+  内容を追記したときは、Slackでお知らせします。
+</footer>
+</div>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function select(t) {
+    tabs.forEach(function (x) {
+      var on = x === t;
+      x.setAttribute('aria-selected', on ? 'true' : 'false');
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(t); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        var n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        select(n); n.focus();
+      }
+    });
+  });
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = document.getElementById(b.dataset.target).innerText;
+      var done = function () { b.textContent = 'コピーしました'; b.classList.add('done');
+        setTimeout(function () { b.textContent = 'コピー'; b.classList.remove('done'); }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+      } else { fallback(text); done(); }
+    });
+  });
+  function fallback(text) {
+    var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
